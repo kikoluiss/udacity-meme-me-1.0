@@ -21,13 +21,6 @@ class MemesCollectionViewController: UICollectionViewController {
     
     let space: CGFloat = 3.0
     var dimension: CGFloat!
-
-    let memeTextAttributes: [NSAttributedStringKey: Any] = [
-        NSAttributedStringKey.strokeColor: UIColor.black,
-        NSAttributedStringKey.foregroundColor: UIColor.white,
-        NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 14)!,
-        NSAttributedStringKey.strokeWidth: -2.0
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,13 +72,7 @@ class MemesCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MemesCollectionViewCell
-    
-        cell.imageView.image = memes[indexPath.row].originalImage
-        let topText = NSAttributedString(string: memes[indexPath.row].topText, attributes: memeTextAttributes)
-        cell.topLabel.attributedText = topText
-        let bottomText = NSAttributedString(string: memes[indexPath.row].bottomText, attributes: memeTextAttributes)
-        cell.bottomLabel.attributedText = bottomText
-    
+        cell.setupCellWith(meme: memes[indexPath.row])
         return cell
     }
 
