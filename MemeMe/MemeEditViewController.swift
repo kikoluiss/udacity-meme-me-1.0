@@ -22,8 +22,6 @@ class MemeEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var albumButton: UIBarButtonItem!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
-    var sentMemesTabBarController: UITabBarController!
     
     let memeTextAttributes: [String: Any] = [
         NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
@@ -50,13 +48,26 @@ class MemeEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        self.sentMemesTabBarController = storyboard?.instantiateViewController(withIdentifier: "sentMemesTabBarController") as! UITabBarController
         subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
+    }
+    
+    @IBAction func cancelEdition(_ sender: Any) {
+        topTextField.delegate = self
+        topTextField.defaultTextAttributes = memeTextAttributes
+        topTextField.text = "TOP"
+        topTextField.textAlignment = .center
+        
+        bottomTextField.delegate = self
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.text = "BOTTOM"
+        bottomTextField.textAlignment = .center
+
+        memeImageView.image = nil
     }
     
     @IBAction func shareMemedImage(_ sender: Any) {
