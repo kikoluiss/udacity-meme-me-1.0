@@ -35,14 +35,13 @@ class MemeEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
         topTextField.delegate = self
         topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.text = "TOP"
         topTextField.textAlignment = .center
         
         bottomTextField.delegate = self
         bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.text = "BOTTOM"
         bottomTextField.textAlignment = .center
 
+        self.resetView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -57,17 +56,7 @@ class MemeEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
     
     @IBAction func cancelEdition(_ sender: Any) {
-        topTextField.delegate = self
-        topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.text = "TOP"
-        topTextField.textAlignment = .center
-        
-        bottomTextField.delegate = self
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.text = "BOTTOM"
-        bottomTextField.textAlignment = .center
-
-        memeImageView.image = nil
+        self.resetView()
     }
     
     @IBAction func shareMemedImage(_ sender: Any) {
@@ -92,6 +81,12 @@ class MemeEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
         else {
             self.presentAlertController(title: "Sharing Meme Error", message: "An image has to be picked before sharing it!")
         }
+    }
+
+    func resetView() {
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
+        memeImageView.image = nil
     }
     
     func presentAlertController(title: String, message: String) {
@@ -151,7 +146,7 @@ class MemeEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     @objc func keyboardWillShow(_ notification:Notification) {
         if bottomTextField.isFirstResponder {
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y -= getKeyboardHeight(notification) - 40
         }
     }
     
