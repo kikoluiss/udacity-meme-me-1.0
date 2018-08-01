@@ -20,30 +20,16 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7T2-zD-Gsd" userLabel="Meme Image View">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aP0-cx-ILS" userLabel="Top Text Field">
-                                <rect key="frame" x="16" y="94" width="343" height="21"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="TOP">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name=".SFNSText"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aP0-cx-ILS" userLabel="Top Text Field">
+                                <rect key="frame" x="16" y="84" width="343" height="48"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OOi-fp-aSW" userLabel="Bottom Text Field">
-                                <rect key="frame" x="16" y="572" width="343" height="21"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="BOTTOM">
-                                        <attributes>
-                                            <color key="NSColor" red="0.99019607843137258" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="18" name="Impact"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OOi-fp-aSW" userLabel="Bottom Text Field">
+                                <rect key="frame" x="16" y="555" width="343" height="48"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1G-VY-i0q">
@@ -70,9 +56,9 @@
                             <constraint firstItem="OOi-fp-aSW" firstAttribute="leading" secondItem="NiI-fc-tpx" secondAttribute="leading" constant="16" id="0Ed-nJ-qCW"/>
                             <constraint firstItem="NiI-fc-tpx" firstAttribute="bottom" secondItem="7T2-zD-Gsd" secondAttribute="bottom" id="Ese-nw-Btn"/>
                             <constraint firstItem="aP0-cx-ILS" firstAttribute="leading" secondItem="NiI-fc-tpx" secondAttribute="leading" constant="16" id="GUc-t4-Iws"/>
-                            <constraint firstItem="aP0-cx-ILS" firstAttribute="top" secondItem="NiI-fc-tpx" secondAttribute="top" constant="30" id="NMV-Pj-e5K"/>
+                            <constraint firstItem="X1G-VY-i0q" firstAttribute="top" secondItem="OOi-fp-aSW" secondAttribute="bottom" constant="20" id="KfB-sz-D68"/>
+                            <constraint firstItem="aP0-cx-ILS" firstAttribute="top" secondItem="NiI-fc-tpx" secondAttribute="top" constant="20" id="NMV-Pj-e5K"/>
                             <constraint firstItem="NiI-fc-tpx" firstAttribute="bottom" secondItem="X1G-VY-i0q" secondAttribute="bottom" id="Sb1-TA-vve"/>
-                            <constraint firstItem="NiI-fc-tpx" firstAttribute="bottom" secondItem="OOi-fp-aSW" secondAttribute="bottom" constant="74" id="f7D-rX-fwx"/>
                             <constraint firstItem="NiI-fc-tpx" firstAttribute="trailing" secondItem="OOi-fp-aSW" secondAttribute="trailing" constant="16" id="i2P-La-biN"/>
                             <constraint firstItem="NiI-fc-tpx" firstAttribute="trailing" secondItem="7T2-zD-Gsd" secondAttribute="trailing" id="jSd-cs-MXZ"/>
                             <constraint firstItem="7T2-zD-Gsd" firstAttribute="leading" secondItem="NiI-fc-tpx" secondAttribute="leading" id="ovY-FI-sKD"/>

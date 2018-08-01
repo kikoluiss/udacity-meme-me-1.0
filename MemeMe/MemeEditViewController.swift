@@ -32,21 +32,17 @@ class MemeEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        topTextField.delegate = self
-        topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .center
-        
-        bottomTextField.delegate = self
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = .center
+
+        self.cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+
+        setStyle(toTextField: topTextField)
+        setStyle(toTextField: bottomTextField)
 
         self.resetView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
     }
     
@@ -83,9 +79,16 @@ class MemeEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
         }
     }
 
+    func setStyle(toTextField textField: UITextField) {
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.autocapitalizationType = .allCharacters
+        textField.delegate = self
+    }
+    
     func resetView() {
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
+        topTextField.text = nil
+        bottomTextField.text = nil
         memeImageView.image = nil
     }
     
@@ -126,10 +129,6 @@ class MemeEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
         picker.dismiss(animated: true, completion: nil)
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
@@ -146,7 +145,7 @@ class MemeEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     @objc func keyboardWillShow(_ notification:Notification) {
         if bottomTextField.isFirstResponder {
-            view.frame.origin.y -= getKeyboardHeight(notification) - 40
+            view.frame.origin.y -= getKeyboardHeight(notification) - bottomTextField.frame.height
         }
     }
     
@@ -164,7 +163,7 @@ class MemeEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     func generateMemedImage() -> UIImage {
         self.navigationController?.navigationBar.isHidden = true
-        self.toolBar.isHidden = true
+        showToolBars(true)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -172,9 +171,13 @@ class MemeEditViewController: UIViewController, UITextFieldDelegate, UIImagePick
         UIGraphicsEndImageContext()
         
         self.navigationController?.navigationBar.isHidden = false
-        self.toolBar.isHidden = false
+        showToolBars(false)
         
         return memedImage
+    }
+    
+    func showToolBars(_ show:Bool) {
+        self.toolBar.isHidden = show
     }
     
     func save(_ meme: Meme) {
